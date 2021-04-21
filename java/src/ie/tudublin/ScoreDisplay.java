@@ -10,6 +10,9 @@ public class ScoreDisplay extends PApplet
 	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 	ArrayList<Note> notes = new ArrayList<Note>();
 
+	Minim minim;
+    AudioPlayer ap;
+    AudioBuffer ab;
 	
 	public void settings()
 	{
@@ -25,7 +28,6 @@ public class ScoreDisplay extends PApplet
 	{
 		loadScore();
 		printNotes();
-
 	}
 
 
@@ -116,7 +118,10 @@ public class ScoreDisplay extends PApplet
 			// 0 to 8 is D to d
 			float y = map(num, 0, 8, topLine, bottomLine);
 
-
+			if(mouseX < border + (i * w) && mouseY < y && mouseY > y-20)
+			{
+				fill(255,0,0);
+			}
 
 			ellipse(border + (i * w), y, w, w);
 			line(border + (i * w)+5, y-40, border + (i * w)+5, y-5);
