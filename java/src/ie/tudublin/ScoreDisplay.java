@@ -14,7 +14,7 @@ import processing.core.PApplet;
 
 public class ScoreDisplay extends PApplet
 {
-	//String score = "DEFGABcd";
+	//String score = "DEFGABcd"; 
 	//String score = "D2E2F2G2A2B2c2d2";
 	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 	ArrayList<Note> notes = new ArrayList<Note>();
@@ -37,6 +37,7 @@ public class ScoreDisplay extends PApplet
 	{
 		loadScore();
 		printNotes();
+		//Trying to add music
 		minim = new Minim(this);
 		/*NOT WORKING
         ap = minim.loadFile("data/Fáinne Geal an Lae on tin whistle.mp3", width);
@@ -45,13 +46,15 @@ public class ScoreDisplay extends PApplet
 	}
 
 
+	// create Note objects from the String and add them to the array list
 	void loadScore()
     {
         for(int i=0; i<score.length(); i++)  // iterate over every character in string
         {
+			// make sure the i+1 does not cause an array out of bounds error
 			if(!(i==score.length()-1))
 			{
-				// if character after current character is 2 create note object wuth 2 as duration
+				// if character after current character is 2 create note object with 2 as duration
 				if(score.charAt(i+1) =='2')
 				{
 					Note n = new Note(score.charAt(i),2); // make a note object
@@ -62,7 +65,7 @@ public class ScoreDisplay extends PApplet
 				{
 					continue;
 				}
-				// if character after current character is not 2 and current is not 2 create note object wuth 1 as duration
+				// if character after current character is not 2 and current is not 2 create note object with 1 as duration
 				else
 				{
 					Note n = new Note(score.charAt(i),1); // make a note object
@@ -81,6 +84,7 @@ public class ScoreDisplay extends PApplet
         {
 			Note n = notes.get(i);
 			print(n.getNote() + "\t" + n.getDuration() + "\t");
+			// print type of note
 			if(n.getDuration()==1)
 			{
 				print("Quaver");
@@ -132,13 +136,14 @@ public class ScoreDisplay extends PApplet
 			// 0 to 8 is D to d
 			float y = map(num, 0, 8, topLine, bottomLine);
 
+			// make notes turn red when mouse is over it
 			if(mouseX < border + (i * w) && mouseY < y && mouseY > y-20)
 			{
-				fill(255,0,0);
+				fill(255,0,0);	//red
 			}
 
-			ellipse(border + (i * w), y, w, w);
-			line(border + (i * w)+5, y-40, border + (i * w)+5, y-5);
+			ellipse(border + (i * w), y, w, w);	//draw circle
+			line(border + (i * w)+5, y-40, border + (i * w)+5, y-5);	// draw line from circle
 
 			// make a tick for the quavers
 			if(n.getDuration()==2)
@@ -146,6 +151,7 @@ public class ScoreDisplay extends PApplet
 				line(border + (i * w)+5, y-40, border + (i * w)+20, y-30);
 			}
 
+			// add text above each note
 			text(n.getNote(), border + (i * w),height/4);
 		}
 	}
