@@ -1,5 +1,9 @@
 package ie.tudublin;
 
+import java.util.ArrayList;
+import ddf.minim.AudioBuffer;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
 
 import processing.core.PApplet;
 
@@ -28,6 +32,9 @@ public class ScoreDisplay extends PApplet
 	{
 		loadScore();
 		printNotes();
+		minim = new Minim(this);
+        ap = minim.loadFile("data/Fáinne Geal an Lae on tin whistle.mp3", width);
+        ab = ap.mix;
 	}
 
 
