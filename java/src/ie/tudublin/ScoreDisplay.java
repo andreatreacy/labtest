@@ -89,10 +89,46 @@ public class ScoreDisplay extends PApplet
 	public void draw()
 	{
 		background(255);
-		
+		stroke(0);
+        float border = width * 0.1f;    // border 10%
+		float bottomLine = (height / 2) + 50;	// 500 / 2 + 50 = 300
+		float topLine = (height / 2) - 50;	// 500 / 2 - 50 = 200
+
+		// draw 5 lines
+		for(int i=0; i<=5; i++)
+		{
+			float x = map(i, 0, 5, topLine, bottomLine);
+			line(border, x, width-border, x);
+		}
+
+		drawNotes();
 	}
 
 	void drawNotes()
 	{
+		float border = width * 0.1f;    // border 10%
+		float bottomLine = (height / 2) + 50;	// 500 / 2 + 50 = 300
+		float topLine = (height / 2) - 50;	// 500 / 2 - 50 = 200
+		stroke(0);
+		fill(0);
+		for(int i=0; i<notes.size(); i++)
+		{
+			Note n = notes.get(i);
+			char c = n.getNote(); // c holds the character
+ 			int num = c - '0'; // num holds the number
+			float w = 20;
+
+			float y = map(num, 0, 8, topLine, bottomLine);
+			println(y);
+			ellipse(border + (i * w), y, w, w);
+			line(border + (i * w)+5, y-40, border + (i * w)+5, y-5);
+
+			if(n.getDuration()==2)
+			{
+				line(border + (i * w)+5, y-40, border + (i * w)+20, y-30);
+			}
+
+			text(n.getNote(), border + (i * w),height/4);
+		}
 	}
 }
