@@ -1,3 +1,8 @@
+/*Labtest
+Author: Andrea Treacy
+Date: 21/04/2020
+Compiler: Visual Studio Code*/ 
+
 package ie.tudublin;
 
 import java.util.ArrayList;
