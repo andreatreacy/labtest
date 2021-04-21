@@ -33,8 +33,10 @@ public class ScoreDisplay extends PApplet
 		loadScore();
 		printNotes();
 		minim = new Minim(this);
+		/*NOT WORKING
         ap = minim.loadFile("data/Fáinne Geal an Lae on tin whistle.mp3", width);
-        ab = ap.mix;
+        ab = ap.mix;*/
+	
 	}
 
 

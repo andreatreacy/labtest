@@ -1,7 +1,6 @@
 package ie.tudublin;
 
 import processing.core.PApplet;
-import processing.data.TableRow;
 
 public class Note {
     private char note;
