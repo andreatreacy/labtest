@@ -1,7 +1,5 @@
 package ie.tudublin;
 
-import java.util.ArrayList;
-
 
 import processing.core.PApplet;
 
@@ -11,6 +9,7 @@ public class ScoreDisplay extends PApplet
 	//String score = "D2E2F2G2A2B2c2d2";
 	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 	ArrayList<Note> notes = new ArrayList<Note>();
+
 	
 	public void settings()
 	{
@@ -26,6 +25,7 @@ public class ScoreDisplay extends PApplet
 	{
 		loadScore();
 		printNotes();
+
 	}
 
 
@@ -61,12 +61,6 @@ public class ScoreDisplay extends PApplet
 	// print all notes
 	void printNotes()
 	{
-		// iterate over stars
-		for(Note n: notes)
-		{
-			println(n); // will access the toString method in the Note class
-		}
-
 		for(int i=0; i<notes.size(); i++)  // iterate over every character in string
         {
 			Note n = notes.get(i);
@@ -110,19 +104,24 @@ public class ScoreDisplay extends PApplet
 		float bottomLine = (height / 2) + 50;	// 500 / 2 + 50 = 300
 		float topLine = (height / 2) - 50;	// 500 / 2 - 50 = 200
 		stroke(0);
-		fill(0);
+		
 		for(int i=0; i<notes.size(); i++)
 		{
+			fill(0);
 			Note n = notes.get(i);
 			char c = n.getNote(); // c holds the character
  			int num = c - '0'; // num holds the number
 			float w = 20;
 
+			// 0 to 8 is D to d
 			float y = map(num, 0, 8, topLine, bottomLine);
-			println(y);
+
+
+
 			ellipse(border + (i * w), y, w, w);
 			line(border + (i * w)+5, y-40, border + (i * w)+5, y-5);
 
+			// make a tick for the quavers
 			if(n.getDuration()==2)
 			{
 				line(border + (i * w)+5, y-40, border + (i * w)+20, y-30);
